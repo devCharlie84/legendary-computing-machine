@@ -11,13 +11,13 @@ import java.util.ArrayList;
  *
  * @author carlo
  */
-public class Bayes {
+public class ClasificadorBayes {
     int indice;
     ArrayList<String> palabra;
     double[] positivo;
     double[] negativo;
     
-    public Bayes() {
+    public ClasificadorBayes() {
         indice = 0;
         palabra = new ArrayList<>();
         positivo = new double[30];
@@ -45,7 +45,7 @@ public class Bayes {
    
     public void ver_palabraCateCantidad() {
         for (int i = 0; i < indice; i++) {
-            System.out.println("Palabra- " +palabra.get(i) + "Positivo " +positivo[i] + "Negativo " + negativo[i]);
+            System.out.println("Palabra- " +palabra.get(i) + " Positivo " +positivo[i] + " Negativo " + negativo[i]);
         }
     }
     
@@ -63,14 +63,14 @@ public class Bayes {
 
 class Palabras {
     ArrayList<String> palabrasL;
-    Bayes cpcate;
+    ClasificadorBayes cpcate;
     double[] categoria; //0 para positivo, 1 para negativo
     int cantidadTextos;
     double[] proCategoria;
     
     public Palabras(){
-        palabrasL = new ArrayList<String>();
-        cpcate = new Bayes();
+        palabrasL = new ArrayList<>();
+        cpcate = new ClasificadorBayes();
         categoria = new double[2];
         proCategoria = new double[2];
         categoria[0]=0.0;
@@ -122,7 +122,7 @@ class Palabras {
     }
     
     public void verCategorias() {
-        System.out.println("Positivo: "+categoria[0] + "Negativo: "+categoria[1]);
+        System.out.println("Positivo: "+categoria[0] + " Negativo: "+categoria[1]);
     }
     
     public int totalPalabras(){
@@ -157,7 +157,7 @@ class Palabras {
         double prob_p;
         double prob_cond = 1;
         int cateTexto = 0;
-        ArrayList<String> palabraslocal = new ArrayList<String>();
+        ArrayList<String> palabraslocal = new ArrayList<>();
         
         for (int i = 0; i < categoria.length; i++) {
             //probabilidad de la categoria sobre textos

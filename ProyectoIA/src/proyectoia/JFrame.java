@@ -8,8 +8,12 @@ package proyectoia;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import static java.util.Collections.list;
+import java.util.List;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -25,38 +29,8 @@ public class JFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-        //Lista por columna del archivo csv  
-        public ArrayList<String> color = new ArrayList<>();
-        public ArrayList<String> director_name = new ArrayList<>();
-        public ArrayList<Integer> num_critic_for_reviews = new ArrayList<>();
-        public ArrayList<Integer> duration = new ArrayList<>();
-        public ArrayList<Integer> director_facebook_likes = new ArrayList<>();
-        public ArrayList<Integer> actor_3_facebook_likes = new ArrayList<>();
-        public ArrayList<String> actor_2_name = new ArrayList<>();
-        public ArrayList<Integer> actor_1_facebook_likes = new ArrayList<>();
-        public ArrayList<Integer> gross = new ArrayList<>();
-        public ArrayList<String> genres = new ArrayList<>();
-            public ArrayList<ArrayList<String>> genres_by_movie = new ArrayList<>();
-        public ArrayList<String> actor_1_name = new ArrayList<>();
-        public ArrayList<String> movie_title = new ArrayList<>();
-        public ArrayList<Integer> num_voted_users = new ArrayList<>();
-        public ArrayList<Integer> cast_total_facebook_likes = new ArrayList<>();
-        public ArrayList<String> actor_3_name = new ArrayList<>();
-        public ArrayList<Integer> facenumber_in_poster = new ArrayList<>();                
-        public ArrayList<String> plot_keywords = new ArrayList<>();
-        public ArrayList<String> movie_imdb_link = new ArrayList<>();
-        public ArrayList<Integer> num_user_for_reviews = new ArrayList<>();
-        public ArrayList<String> language = new ArrayList<>();
-        public ArrayList<String> country = new ArrayList<>();                        
-        public ArrayList<String> content_rating = new ArrayList<>();
-        public ArrayList<Long> budget = new ArrayList<>();
-        public ArrayList<Integer> title_year = new ArrayList<>();
-        public ArrayList<Integer> actor_2_facebook_likes = new ArrayList<>();
-        public ArrayList<Double> imdb_score = new ArrayList<>();
-        public ArrayList<Double> aspect_ratio = new ArrayList<>();
-        public ArrayList<Integer> movie_facebook_likes = new ArrayList<>();
-        
-        public int contador = 0;
+        public String ruta;
+        boolean flagArchivo = false;
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,6 +43,8 @@ public class JFrame extends javax.swing.JFrame {
 
         btnArchivo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnArranqueFrio = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,593 +55,127 @@ public class JFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Ingrese el Data Set IA de las peliculas");
+        jLabel1.setText("Ingrese el Data Set de las mejores peliculas de IMDB");
+
+        btnArranqueFrio.setText("Arranque en frío");
+        btnArranqueFrio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnArranqueFrioActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Mejora de las recomendaciones por usuario");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(btnArchivo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel1)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnArranqueFrio, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(218, 218, 218))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnArchivo)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addComponent(btnArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnArranqueFrio, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     //btnArchivo
     private void btnArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchivoActionPerformed
         // TODO add your handling code here:
+        DataSetMovies movies = new DataSetMovies();
+                
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV Files", "csv");
         fileChooser.addChoosableFileFilter(filter);
         fileChooser.showOpenDialog(null);
-        String ruta = fileChooser.getSelectedFile().getAbsolutePath();
-        LeerArchivo(ruta);
+        ruta = fileChooser.getSelectedFile().getAbsolutePath();
+        movies.LeerArchivo(ruta);
+        flagArchivo = true;
     }//GEN-LAST:event_btnArchivoActionPerformed
 
-    
-    //Método que lee archivo
-    //LeerArchivo
-    public void LeerArchivo(String ruta){
-        int i =0;
-        
-        try {
-            try (Scanner scanner = new Scanner(new File(ruta))) {
-                while (scanner.hasNextLine()){
-                    String fila = scanner.nextLine();
-                    if(i >0){
-                        LlenarListas(fila);
-                    }
-                    i++;
-                }
-            }
-        } catch (FileNotFoundException ex) {
+    private void btnArranqueFrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArranqueFrioActionPerformed
+        // TODO add your handling code here:
+        if (flagArchivo) {
+            
+        } else {    
+            JOptionPane.showMessageDialog( null, "Para esta opción debe ingresar primero el Data Set", "ADVERTENCIA",JOptionPane.INFORMATION_MESSAGE);
+
         }
-    }
+    }//GEN-LAST:event_btnArranqueFrioActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        RecomendacionUsuario frameUsuario  = new RecomendacionUsuario(ruta);
+        
+        if (flagArchivo) {
+            frameUsuario.setVisible(true);
+            this.setVisible(false);
+        } else {    
+            JOptionPane.showMessageDialog( null, "Para esta opción debe ingresar primero el Data Set", "ADVERTENCIA",JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     
-    //Método que llena las listas por cada columna 
-    //LlenarListas
-   public void LlenarListas(String fila) {
-       String[] genresByMovie;
-       ArrayList<String> generos = new ArrayList<>();
-               
-       String[] columnas = fila.split(",");
-     
-       // <editor-fold defaultstate="collapsed" desc="IF statement">
-       if (columnas.length == 29) {
-           color.add(columnas[0]);
-           
-           director_name.add(columnas[1]);
-           
-           if (columnas[2].equals("")) {
-               num_critic_for_reviews.add(0);
-           } else {
-               num_critic_for_reviews.add(Integer.parseInt(columnas[2]));
-           }
-           
-           if (columnas[3].equals("")) {
-               duration.add(0);
-           } else {
-               duration.add(Integer.parseInt(columnas[3]));
-           }
-           
-           if (columnas[4].equals("")) {
-               director_facebook_likes.add(0);
-           } else {
-               director_facebook_likes.add(Integer.parseInt(columnas[4]));
-           }
-           
-           if (columnas[5].equals("")) {
-               actor_3_facebook_likes.add(0);
-           } else {
-               actor_3_facebook_likes.add(Integer.parseInt(columnas[5]));
-           }
-           
-           actor_2_name.add(columnas[6]);
-           
-           if (columnas[7].equals("")) {
-               actor_1_facebook_likes.add(0);
-           } else {
-               actor_1_facebook_likes.add(Integer.parseInt(columnas[7]));
-           }
-           
-           if (columnas[8].equals("")) {
-               gross.add(0);
-           } else {
-               gross.add(Integer.parseInt(columnas[8]));
-           }
-           
-           genres.add(columnas[9]);
-           genresByMovie =  columnas[9].split("\\|");
-                        for (String genero : genresByMovie) 
-                            generos.add(genero);  
-                         genres_by_movie.add(contador, generos); 
-                            contador++;
-                            
-           actor_1_name.add(columnas[10]);
-           
-           movie_title.add(columnas[11]+columnas[12]);
-           
-           if (columnas[13].equals("")) {
-               num_voted_users.add(0);
-           } else {
-               num_voted_users.add(Integer.parseInt(columnas[13]));
-           }
-           
-           if (columnas[14].equals("")) {
-               cast_total_facebook_likes.add(0);
-           } else {
-               cast_total_facebook_likes.add(Integer.parseInt(columnas[14]));
-           }
-           
-           actor_3_name.add(columnas[15]);
-           
-           if (columnas[16].equals("")) {
-               facenumber_in_poster.add(0);
-           } else {
-               facenumber_in_poster.add(Integer.parseInt(columnas[16]));
-           }
-           
-           plot_keywords.add(columnas[17]);
-           
-           movie_imdb_link.add(columnas[18]);
-           
-           if (columnas[19].equals("")) {
-               num_user_for_reviews.add(0);
-           } else {
-               num_user_for_reviews.add(Integer.parseInt(columnas[19]));
-           }
-           
-           language.add(columnas[20]);
-           
-           country.add(columnas[21]);
-           
-           content_rating.add(columnas[22]);
-           
-           if (columnas[23].equals("")) {
-               budget.add(Long.MIN_VALUE);
-           } else {
-               budget.add(Long.parseLong(columnas[23]));
-           }
-           
-           if (columnas[24].equals("")) {
-               title_year.add(0);
-           } else {
-               title_year.add(Integer.parseInt(columnas[24]));
-           }
-           
-           if (columnas[25].equals("")) {
-               actor_2_facebook_likes.add(0);
-           } else {
-               actor_2_facebook_likes.add(Integer.parseInt(columnas[25]));
-           }
-           
-           if (columnas[26].equals("")) {
-               imdb_score.add(0.0);
-           } else {
-               imdb_score.add(Double.parseDouble(columnas[26]));
-           }
-           
-           if (columnas[27].equals("")) {
-               aspect_ratio.add(0.0);
-           } else {
-               aspect_ratio.add(Double.parseDouble(columnas[27]));
-           }
-           
-           if (columnas[28].equals("")) {
-               movie_facebook_likes.add(0);
-           } else {
-               movie_facebook_likes.add(Integer.parseInt(columnas[28]));
-           }
-           
-       } //if length == 29
-      else if (columnas.length == 30) {
-           color.add(columnas[0]);
-           
-           director_name.add(columnas[1]);
-           
-           if (columnas[2].equals("")) {
-               num_critic_for_reviews.add(0);
-           } else {
-               num_critic_for_reviews.add(Integer.parseInt(columnas[2]));
-           }
-           
-           if (columnas[3].equals("")) {
-               duration.add(0);
-           } else {
-               duration.add(Integer.parseInt(columnas[3]));
-           }
-           
-           if (columnas[4].equals("")) {
-               director_facebook_likes.add(0);
-           } else {
-               director_facebook_likes.add(Integer.parseInt(columnas[4]));
-           }
-           
-           if (columnas[5].equals("")) {
-               actor_3_facebook_likes.add(0);
-           } else {
-               actor_3_facebook_likes.add(Integer.parseInt(columnas[5]));
-           }
-           
-           actor_2_name.add(columnas[6]);
-           
-           if (columnas[7].equals("")) {
-               actor_1_facebook_likes.add(0);
-           } else {
-               actor_1_facebook_likes.add(Integer.parseInt(columnas[7]));
-           }
-           
-           if (columnas[8].equals("")) {
-               gross.add(0);
-           } else {
-               gross.add(Integer.parseInt(columnas[8]));
-           }
-           
-           genres.add(columnas[9]);
-           genresByMovie =  columnas[9].split("\\|");
-                        for (String genero : genresByMovie) 
-                            generos.add(genero);  
-                         genres_by_movie.add(contador, generos); 
-                            contador++;
-                            
-           actor_1_name.add(columnas[10]);
-           
-           movie_title.add(columnas[11]+columnas[12]+columnas[13]);
-           
-           if (columnas[14].equals("")) {
-               num_voted_users.add(0);
-           } else {
-               num_voted_users.add(Integer.parseInt(columnas[14]));
-           }
-           
-           if (columnas[15].equals("")) {
-               cast_total_facebook_likes.add(0);
-           } else {
-               cast_total_facebook_likes.add(Integer.parseInt(columnas[15]));
-           }
-           
-           actor_3_name.add(columnas[16]);
-           
-           if (columnas[17].equals("")) {
-               facenumber_in_poster.add(0);
-           } else {
-               facenumber_in_poster.add(Integer.parseInt(columnas[17]));
-           }
-           
-           plot_keywords.add(columnas[18]);
-           
-           movie_imdb_link.add(columnas[19]);
-           
-           if (columnas[20].equals("")) {
-               num_user_for_reviews.add(0);
-           } else {
-               num_user_for_reviews.add(Integer.parseInt(columnas[20]));
-           }
-           
-           language.add(columnas[21]);
-           
-           country.add(columnas[22]);
-           
-           content_rating.add(columnas[23]);
-           
-           if (columnas[24].equals("")) {
-               budget.add(Long.MIN_VALUE);
-           } else {
-               budget.add(Long.parseLong(columnas[24]));
-           }
-           
-           if (columnas[25].equals("")) {
-               title_year.add(0);
-           } else {
-               title_year.add(Integer.parseInt(columnas[25]));
-           }
-           
-           if (columnas[26].equals("")) {
-               actor_2_facebook_likes.add(0);
-           } else {
-               actor_2_facebook_likes.add(Integer.parseInt(columnas[26]));
-           }
-           
-           if (columnas[27].equals("")) {
-               imdb_score.add(0.0);
-           } else {
-               imdb_score.add(Double.parseDouble(columnas[27]));
-           }
-           
-           if (columnas[28].equals("")) {
-               aspect_ratio.add(0.0);
-           } else {
-               aspect_ratio.add(Double.parseDouble(columnas[28]));
-           }
-           
-           if (columnas[29].equals("")) {
-               movie_facebook_likes.add(0);
-           } else {
-               movie_facebook_likes.add(Integer.parseInt(columnas[29]));
-           }   
-       } //else if length == 30
-      else if (columnas.length == 31) {
-           color.add(columnas[0]);
-           
-           director_name.add(columnas[1]);
-           
-           if (columnas[2].equals("")) {
-               num_critic_for_reviews.add(0);
-           } else {
-               num_critic_for_reviews.add(Integer.parseInt(columnas[2]));
-           }
-           
-           if (columnas[3].equals("")) {
-               duration.add(0);
-           } else {
-               duration.add(Integer.parseInt(columnas[3]));
-           }
-           
-           if (columnas[4].equals("")) {
-               director_facebook_likes.add(0);
-           } else {
-               director_facebook_likes.add(Integer.parseInt(columnas[4]));
-           }
-           
-           if (columnas[5].equals("")) {
-               actor_3_facebook_likes.add(0);
-           } else {
-               actor_3_facebook_likes.add(Integer.parseInt(columnas[5]));
-           }
-           
-           actor_2_name.add(columnas[6]);
-           
-           if (columnas[7].equals("")) {
-               actor_1_facebook_likes.add(0);
-           } else {
-               actor_1_facebook_likes.add(Integer.parseInt(columnas[7]));
-           }
-           
-           if (columnas[8].equals("")) {
-               gross.add(0);
-           } else {
-               gross.add(Integer.parseInt(columnas[8]));
-           }
-           
-           genres.add(columnas[9]);
-           genresByMovie =  columnas[9].split("\\|");
-                        for (String genero : genresByMovie) 
-                            generos.add(genero);  
-                         genres_by_movie.add(contador, generos); 
-                            contador++;
-                            
-           actor_1_name.add(columnas[10]);
-           
-           movie_title.add(columnas[11]+columnas[12]+columnas[13]+columnas[14]);
-           
-           if (columnas[15].equals("")) {
-               num_voted_users.add(0);
-           } else {
-               num_voted_users.add(Integer.parseInt(columnas[15]));
-           }
-           
-           if (columnas[16].equals("")) {
-               cast_total_facebook_likes.add(0);
-           } else {
-               cast_total_facebook_likes.add(Integer.parseInt(columnas[16]));
-           }
-           
-           actor_3_name.add(columnas[17]);
-           
-           if (columnas[18].equals("")) {
-               facenumber_in_poster.add(0);
-           } else {
-               facenumber_in_poster.add(Integer.parseInt(columnas[18]));
-           }
-           
-           plot_keywords.add(columnas[19]);
-           
-           movie_imdb_link.add(columnas[20]);
-           
-           if (columnas[21].equals("")) {
-               num_user_for_reviews.add(0);
-           } else {
-               num_user_for_reviews.add(Integer.parseInt(columnas[21]));
-           }
-           
-           language.add(columnas[22]);
-           
-           country.add(columnas[23]);
-           
-           content_rating.add(columnas[24]);
-           
-           if (columnas[25].equals("")) {
-               budget.add(Long.MIN_VALUE);
-           } else {
-               budget.add(Long.parseLong(columnas[25]));
-           }
-           
-           if (columnas[26].equals("")) {
-               title_year.add(0);
-           } else {
-               title_year.add(Integer.parseInt(columnas[26]));
-           }
-           
-           if (columnas[27].equals("")) {
-               actor_2_facebook_likes.add(0);
-           } else {
-               actor_2_facebook_likes.add(Integer.parseInt(columnas[27]));
-           }
-           
-           if (columnas[28].equals("")) {
-               imdb_score.add(0.0);
-           } else {
-               imdb_score.add(Double.parseDouble(columnas[28]));
-           }
-           
-           if (columnas[29].equals("")) {
-               aspect_ratio.add(0.0);
-           } else {
-               aspect_ratio.add(Double.parseDouble(columnas[29]));
-           }
-           
-           if (columnas[30].equals("")) {
-               movie_facebook_likes.add(0);
-           } else {
-               movie_facebook_likes.add(Integer.parseInt(columnas[30]));
-           }   
-       } //else if length == 31
+   //Normalización
+   /*
+      X = (X - min) / (max - min)
+   */
+   public ArrayList<Integer> Normalizar (ArrayList<Integer> lista) {
+      ArrayList<Integer> ListaNormalizada = new ArrayList();
       
-       //else
-       else {
-           color.add(columnas[0]);
-           
-           director_name.add(columnas[1]);
-           
-           if (columnas[2].equals("")) {
-               num_critic_for_reviews.add(0);
-           } else {
-               num_critic_for_reviews.add(Integer.parseInt(columnas[2]));
-           }
-           
-           if (columnas[3].equals("")) {
-               duration.add(0);
-           } else {
-               duration.add(Integer.parseInt(columnas[3]));
-           }
-           
-           if (columnas[4].equals("")) {
-               director_facebook_likes.add(0);
-           } else {
-               director_facebook_likes.add(Integer.parseInt(columnas[4]));
-           }
-           
-           if (columnas[5].equals("")) {
-               actor_3_facebook_likes.add(0);
-           } else {
-               actor_3_facebook_likes.add(Integer.parseInt(columnas[5]));
-           }
-           
-           actor_2_name.add(columnas[6]);
-           
-           if (columnas[7].equals("")) {
-               actor_1_facebook_likes.add(0);
-           } else {
-               actor_1_facebook_likes.add(Integer.parseInt(columnas[7]));
-           }
-           
-           if (columnas[8].equals("")) {
-               gross.add(0);
-           } else {
-               gross.add(Integer.parseInt(columnas[8]));
-           }
-           
-           genres.add(columnas[9]);
-           genresByMovie =  columnas[9].split("\\|");
-                        for (String genero : genresByMovie) 
-                            generos.add(genero);  
-                         genres_by_movie.add(contador, generos); 
-                            contador++;
-                            
-           actor_1_name.add(columnas[10]);
-           
-           movie_title.add(columnas[11]);
-           
-           if (columnas[12].equals("")) {
-               num_voted_users.add(0);
-           } else {
-               num_voted_users.add(Integer.parseInt(columnas[12]));
-           }
-           
-           if (columnas[13].equals("")) {
-               cast_total_facebook_likes.add(0);
-           } else {
-               cast_total_facebook_likes.add(Integer.parseInt(columnas[13]));
-           }
-           
-           actor_3_name.add(columnas[14]);
-           
-           if (columnas[15].equals("")) {
-               facenumber_in_poster.add(0);
-           } else {
-               facenumber_in_poster.add(Integer.parseInt(columnas[15]));
-           }
-           
-           plot_keywords.add(columnas[16]);
-           
-           movie_imdb_link.add(columnas[17]);
-           
-           if (columnas[18].equals("")) {
-               num_user_for_reviews.add(0);
-           } else {
-               num_user_for_reviews.add(Integer.parseInt(columnas[18]));
-           }
-           
-           language.add(columnas[19]);
-           
-           country.add(columnas[20]);
-           
-           content_rating.add(columnas[21]);
-           
-           if (columnas[22].equals("")) {
-               budget.add(Long.MIN_VALUE);
-           } else {
-               budget.add(Long.parseLong(columnas[22]));
-           }
-           
-           if (columnas[23].equals("")) {
-               title_year.add(0);
-           } else {
-               title_year.add(Integer.parseInt(columnas[23]));
-           }
-           
-           
-           if (columnas[24].equals("")) {
-               actor_2_facebook_likes.add(0);
-           } else {
-               actor_2_facebook_likes.add(Integer.parseInt(columnas[24]));
-           }
-           
-           if (columnas[25].equals("")) {
-               imdb_score.add(0.0);
-           } else {
-               imdb_score.add(Double.parseDouble(columnas[25]));
-           }
-           
-           if (columnas[26].equals("")) {
-               aspect_ratio.add(0.0);
-           } else {
-               aspect_ratio.add(Double.parseDouble(columnas[26]));
-           }
-           
-           if (columnas[27].equals("")) {
-               movie_facebook_likes.add(0);
-           } else {
-               movie_facebook_likes.add(Integer.parseInt(columnas[27]));
-           }
-       }
+       int menor, mayor = 0;
        
-// </editor-fold>
-
-
-             
+       menor = NumeroMinimo(lista);
+       mayor = NumeroMaximo(lista);
+       
+       for (int i = 0; i < lista.size(); i++) {
+           ListaNormalizada.add(i,(lista.get(i)-menor)/(mayor-menor));
+       }
+       return ListaNormalizada;
    }
    
-   public void Normalizar (ArrayList lista) {
-       
+   public Integer NumeroMinimo (ArrayList lista){
+        List<Integer> sortedlist = new ArrayList<>(lista); 
+        Collections.sort(sortedlist); 
+        return sortedlist.get(0);
+   }
+   
+   public Integer NumeroMaximo (ArrayList lista){
+        List<Integer> sortedlist = new ArrayList<>(lista); 
+        Collections.sort(sortedlist); 
+        return sortedlist.get(sortedlist.size()-1);
    }
    
     /**
@@ -705,6 +215,8 @@ public class JFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArchivo;
+    private javax.swing.JButton btnArranqueFrio;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
