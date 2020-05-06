@@ -17,7 +17,10 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -34,6 +37,8 @@ public class ArranqueFrio extends javax.swing.JFrame {
     public ArrayList<Double> listaSimilitud = new ArrayList<>();
     public ArrayList<Integer> listaRecomendacion = new ArrayList<>();
     
+    public boolean flagRecomendar = false;
+
     
     /**
      * Creates new form ArranqueFrio
@@ -61,6 +66,7 @@ public class ArranqueFrio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListFrio = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +81,13 @@ public class ArranqueFrio extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jListFrio);
 
+        jButton1.setText("Nueva Recomendación");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,35 +98,46 @@ public class ArranqueFrio extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRecomendar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel1)))
-                        .addGap(0, 223, Short.MAX_VALUE)))
+                                .addGap(238, 238, 238)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(190, 190, 190)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(207, 207, 207)
+                                .addComponent(btnRecomendar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 193, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(btnRecomendar)
-                .addGap(78, 78, 78)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRecomendar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRecomendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecomendarActionPerformed
         // TODO add your handling code here:
+         if (flagRecomendar) {
+            JOptionPane.showMessageDialog( null, "Para realizar una nueva recomendación ingrese la opción 'Nueva Recomendación'", "ADVERTENCIA",JOptionPane.INFORMATION_MESSAGE);
+        } else {
+        flagRecomendar = true;
         data.LeerArchivo(ruta);
         
-        String path = "src/ProyectoIA/test/Datos.txt";
+        String path = "src/Tests/Datos.txt";
         File file = new File(path);
         String rutaCompleta = file.getAbsolutePath();
 
@@ -121,25 +145,40 @@ public class ArranqueFrio extends javax.swing.JFrame {
         BufferedWriter bw;
  
         if(archivo.exists()) {
+            JOptionPane.showMessageDialog( null, "Búsquedas de recomendación de usuarios detectados aplicando COLLABORATIVE FILTERING", "Aviso",JOptionPane.INFORMATION_MESSAGE);
             try {
                 RecomendacionAlimentada(rutaCompleta);
             } catch (IOException ex) {
                 Logger.getLogger(ArranqueFrio.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
+            JOptionPane.showMessageDialog( null, "Actualmente NO hay búsquedas de recomendación por otros usuarios por lo que se recomendará con un ARRANQUE EN FRÍO", "Aviso",JOptionPane.INFORMATION_MESSAGE);
             RecomendacionDefault();
             DefaultListModel model = new DefaultListModel<>();
             for(String s : nombrePelicula){
             model.addElement(s);
             }
+            DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)jListFrio.getCellRenderer();
+            cellRenderer.setHorizontalAlignment(SwingConstants .CENTER);
             jListFrio.setModel(model);
         }
+         }
     }//GEN-LAST:event_btnRecomendarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         JFrame menu = new JFrame();
+            menu.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void RecomendacionDefault () {    
+        //TOP 25-50 BEST IMDB SCORE
         ArrayList<Double> ratings = MaxSort(data.imdb_score);
-        
-        for (int i = 0; i <= 10; i++) {
+       
+        int randomN = (int) Math.floor(Math.random()*(50-25+1)+25);
+         
+        for (int i = 0; i <= randomN; i++) {
             for (int j = 0; j < ratings.size(); j++) {
                 String tempo = data.movie_title.get(j);
                 if (Objects.equals(data.imdb_score.get(j), ratings.get(i))&&(!nombrePelicula.contains(tempo))) {
@@ -153,7 +192,6 @@ public class ArranqueFrio extends javax.swing.JFrame {
     public void RecomendacionAlimentada (String ruta) throws FileNotFoundException, IOException {
         String director ="",actor ="", genero ="",color="",idioma="",pais="",año="";
       
-        
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -164,15 +202,15 @@ public class ArranqueFrio extends javax.swing.JFrame {
         // Lectura del fichero
         String linea;
         while((linea=br.readLine())!=null){
-        if(linea.startsWith("(DIRECTOR)")){linea = linea.replace("(DIRECTOR)", ""); director = linea;}
-        if(linea.startsWith("(ACTOR)")){linea = linea.replace("(ACTOR)", ""); actor = linea;}
-        if(linea.startsWith("(GENERO)")){linea = linea.replace("(GENERO)", ""); genero = linea;}
-        if(linea.startsWith("(COLOR)")){linea = linea.replace("(COLOR)", ""); color = linea;}
-        if(linea.startsWith("(IDIOMA)")){linea = linea.replace("(IDIOMA)", ""); idioma = linea;}
-        if(linea.startsWith("(PAIS)")){linea = linea.replace("(PAIS)", ""); pais = linea;}
-        if(linea.startsWith("(AÑO)")){linea = linea.replace("(AÑO)", ""); año = linea; }
+        if(linea.startsWith("(DIRECTOR)")){linea = linea.replace("(DIRECTOR)",""); director = linea; director = director.substring(1);}
+        if(linea.startsWith("(ACTOR)")){linea = linea.replace("(ACTOR)",""); actor = linea; actor = actor.substring(1); }
+        if(linea.startsWith("(GENERO)")){linea = linea.replace("(GENERO)",""); genero = linea; genero = genero.substring(1);}
+        if(linea.startsWith("(COLOR)")){linea = linea.replace("(COLOR)",""); color = linea; color = color.substring(1);}
+        if(linea.startsWith("(IDIOMA)")){linea = linea.replace("(IDIOMA)",""); idioma = linea; idioma = idioma.substring(1);}
+        if(linea.startsWith("(PAIS)")){linea = linea.replace("(PAIS)",""); pais = linea; pais = pais.substring(1);}
+        if(linea.startsWith("(AÑO)")){linea = linea.replace("(AÑO)",""); año = linea; año = año.substring(1); }
         }
-        
+
         Similitud(director,actor,genero,pais,año,idioma,color);
     }
     
@@ -200,7 +238,6 @@ public class ArranqueFrio extends javax.swing.JFrame {
         double pesoIdioma = 0.05;
         double pesoColor;
          
-       
         String[] generosUsuario = Genero.split(",");
         String[] directorUsuario = Director.split(",");
         String[] actorUsuario = Actor.split(",");
@@ -211,7 +248,7 @@ public class ArranqueFrio extends javax.swing.JFrame {
         for (int i = 0; i < data.director_name.size(); i++) {
             double similitud = 0.0;
             
-            if (Director.isEmpty()&&Actor.isEmpty()&&Genero.isEmpty()&&Pais.isEmpty()&&Año.isEmpty()&&Idioma.isEmpty()) {
+            if (Director.isEmpty()&&Actor.isEmpty()&&Genero.isEmpty()&&Pais.isEmpty()&&Año.isEmpty()) {
                 if (Color.equals("Color")) {
                     if (data.color.get(i).equals(Color)) {
                         pesoColor = 0.0;
@@ -227,13 +264,13 @@ public class ArranqueFrio extends javax.swing.JFrame {
                 }
             }
             
-            if (data.language.get(i).equals(Idioma)) {
+            if (data.language.get(i).toUpperCase().equals(Idioma.toUpperCase())) {
                 similitud = similitud + pesoIdioma;
             }
             
             
             for (String director : directorUsuario){
-            if(data.director_name.get(i).toUpperCase().equals(director)){
+            if(data.director_name.get(i).toUpperCase().equals(director.toUpperCase())){
                 similitud = similitud + pesoDirector;
             }
             }
@@ -256,19 +293,19 @@ public class ArranqueFrio extends javax.swing.JFrame {
             }
             
             for (String actor : actorUsuario){
-            if(data.actor_1_name.get(i).toUpperCase().equals(actor)){
+            if(data.actor_1_name.get(i).toUpperCase().equals(actor.toUpperCase())){
                 similitud = similitud + pesoActor;
             }
-            else if(data.actor_2_name.get(i).toUpperCase().equals(actor)){
+            else if(data.actor_2_name.get(i).toUpperCase().equals(actor.toUpperCase())){
                 similitud = similitud + pesoActor;
             }
-            else if(data.actor_3_name.get(i).toUpperCase().equals(actor)){
+            else if(data.actor_3_name.get(i).toUpperCase().equals(actor.toUpperCase())){
                 similitud = similitud + pesoActor;
             }
             }
             
             for (String pais : paisUsuario){
-            if(data.country.get(i).toUpperCase().equals(pais)){
+            if(data.country.get(i).toUpperCase().equals(pais.toUpperCase())){
                 similitud = similitud + pesoPais;
             }
             }
@@ -312,6 +349,8 @@ public class ArranqueFrio extends javax.swing.JFrame {
             String add = data.movie_title.get(random);
             model.addElement(add);
         }
+        DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer)jListFrio.getCellRenderer();
+        cellRenderer.setHorizontalAlignment(SwingConstants .CENTER);
         jListFrio.setModel(model);
         
     }
@@ -400,6 +439,7 @@ public class ArranqueFrio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRecomendar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListFrio;
     private javax.swing.JScrollPane jScrollPane1;
