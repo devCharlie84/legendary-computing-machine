@@ -30,92 +30,179 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="261" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" pref="158" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="textFieldAñoLanzamiento" min="-2" pref="118" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="boxDrama" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="boxDocumental" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="boxAccion" min="-2" max="-2" attributes="0"/>
+                          <Component id="boxAventura" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="boxSuspenso" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="boxRomance" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="boxFantasia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="boxFiccion" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="boxAnimacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="boxFamilia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="boxMusical" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="boxMisterio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="boxWestern" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="boxHistoria" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="boxDeporte" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="boxCrimen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="boxComedia" min="-2" max="-2" attributes="0"/>
+                                          <Component id="boxBiografia" min="-2" max="-2" attributes="0"/>
+                                          <Component id="boxGuerra" min="-2" max="-2" attributes="0"/>
+                                          <Component id="boxHorror" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Component id="btnRecomendar" min="-2" pref="110" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txtFieldDirector" min="-2" pref="116" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="textFieldActor" min="-2" pref="116" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="textFieldPais" min="-2" pref="116" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtFieldDirector" alignment="0" max="32767" attributes="0"/>
-                              <Component id="textFieldActor" alignment="0" max="32767" attributes="0"/>
-                              <Component id="textFieldPais" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="boxAccion" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxComedia" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxDrama" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jComboBox2" max="32767" attributes="0"/>
+                                  <Component id="textFieldAñoLanzamiento" pref="118" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="521" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
-                      <Component id="btnRecomendar" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" alignment="0" min="-2" pref="698" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel7" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtFieldDirector" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <Component id="textFieldActor" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="textFieldActor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="textFieldPais" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textFieldAñoLanzamiento" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-              <Component id="boxAccion" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-              <Component id="boxDrama" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="boxComedia" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-              <Component id="btnRecomendar" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="boxAccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxFantasia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxAnimacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxWestern" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxHorror" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="boxFiccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxAventura" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxFamilia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxHistoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxGuerra" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="boxDocumental" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxSuspenso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxMusical" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxDeporte" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxBiografia" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="boxRomance" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxDrama" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxMisterio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxCrimen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boxComedia" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="btnRecomendar" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="220" max="-2" attributes="0"/>
-              <EmptySpace pref="70" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButton1" pref="44" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,16 +223,11 @@
         <Property name="text" type="java.lang.String" value="Comedia"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Director"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="txtFieldDirector">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Actor Principal"/>
+        <Property name="text" type="java.lang.String" value="Actor"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldPais">
@@ -196,5 +278,185 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Para alimentar el motor de recomendaci&#xf3;n y que sus recomendaciones sean m&#xe1;s acertadas, usted deber&#xe1; ingresar los campos que usted quiera"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Si quiere ingresar m&#xe1;s de un elemento en un campo puede hacerlo seguido de una coma"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Director"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBox1">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Color"/>
+            <StringItem index="1" value="Black and White"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxAventura">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aventura"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxFantasia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fantas&#xed;a"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxDocumental">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Documental"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxFiccion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ciencia Ficci&#xf3;n"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxRomance">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Romance"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxSuspenso">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Suspenso"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxAnimacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Animaci&#xf3;n"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxFamilia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Familia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxMusical">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Musical"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxMisterio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Misterio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxWestern">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Western"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxHistoria">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Historia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxDeporte">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Deporte"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxCrimen">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Crimen"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxHorror">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Horror"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxGuerra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Guerra"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="boxBiografia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Biograf&#xed;a"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBox2">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="42">
+            <StringItem index="0" value="English"/>
+            <StringItem index="1" value="Spanish"/>
+            <StringItem index="2" value="Japanese"/>
+            <StringItem index="3" value="French"/>
+            <StringItem index="4" value="Mandarin"/>
+            <StringItem index="5" value="Aboriginal"/>
+            <StringItem index="6" value="English"/>
+            <StringItem index="7" value="Hindi"/>
+            <StringItem index="8" value="Russian"/>
+            <StringItem index="9" value="Maya"/>
+            <StringItem index="10" value="Telugu"/>
+            <StringItem index="11" value="Cantonese"/>
+            <StringItem index="12" value="Icelandic"/>
+            <StringItem index="13" value="German"/>
+            <StringItem index="14" value="Aramaic"/>
+            <StringItem index="15" value="Italian"/>
+            <StringItem index="16" value="Dutch"/>
+            <StringItem index="17" value="Hebrew"/>
+            <StringItem index="18" value="Chinese"/>
+            <StringItem index="19" value="Swedish"/>
+            <StringItem index="20" value="Korean"/>
+            <StringItem index="21" value="Thai"/>
+            <StringItem index="22" value="Polish"/>
+            <StringItem index="23" value="Bosnian"/>
+            <StringItem index="24" value="Hungarian"/>
+            <StringItem index="25" value="Portuguese"/>
+            <StringItem index="26" value="Norwegian"/>
+            <StringItem index="27" value="Czech"/>
+            <StringItem index="28" value="Kannada"/>
+            <StringItem index="29" value="Zulu"/>
+            <StringItem index="30" value="Danish"/>
+            <StringItem index="31" value="Arabic"/>
+            <StringItem index="32" value="Dzongkha"/>
+            <StringItem index="33" value="Tamil"/>
+            <StringItem index="34" value="Vietnamese"/>
+            <StringItem index="35" value="Indonesian"/>
+            <StringItem index="36" value="Urdu"/>
+            <StringItem index="37" value="Romanian"/>
+            <StringItem index="38" value="Slovenian"/>
+            <StringItem index="39" value="Dari"/>
+            <StringItem index="40" value="Persian"/>
+            <StringItem index="41" value="None"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nueva Recomendaci&#xf3;n"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

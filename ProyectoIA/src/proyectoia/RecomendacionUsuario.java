@@ -1,13 +1,18 @@
 package proyectoia;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,9 +30,13 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
      * Creates new form RecomendacionUsuario
      */
     public String ruta;
-    public ArrayList<Double> listaSimilitud = new ArrayList<>();
     
-    public ArrayList<Integer> recomendacion = new ArrayList<>();
+    public ArrayList<Double> listaSimilitud = new ArrayList<>();
+    public ArrayList<Integer> listaRecomendacion = new ArrayList<>();
+    
+    public ArrayList<String> lista = new ArrayList<>();
+    public boolean flagRecomendar = false;
+    
     
     public RecomendacionUsuario(String ruta) {
         this.ruta = ruta;
@@ -51,7 +60,6 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         boxDrama = new javax.swing.JCheckBox();
         boxAccion = new javax.swing.JCheckBox();
         boxComedia = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
         txtFieldDirector = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         textFieldPais = new javax.swing.JTextField();
@@ -63,6 +71,29 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         btnRecomendar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        boxAventura = new javax.swing.JCheckBox();
+        boxFantasia = new javax.swing.JCheckBox();
+        boxDocumental = new javax.swing.JCheckBox();
+        boxFiccion = new javax.swing.JCheckBox();
+        boxRomance = new javax.swing.JCheckBox();
+        boxSuspenso = new javax.swing.JCheckBox();
+        boxAnimacion = new javax.swing.JCheckBox();
+        boxFamilia = new javax.swing.JCheckBox();
+        boxMusical = new javax.swing.JCheckBox();
+        boxMisterio = new javax.swing.JCheckBox();
+        boxWestern = new javax.swing.JCheckBox();
+        boxHistoria = new javax.swing.JCheckBox();
+        boxDeporte = new javax.swing.JCheckBox();
+        boxCrimen = new javax.swing.JCheckBox();
+        boxHorror = new javax.swing.JCheckBox();
+        boxGuerra = new javax.swing.JCheckBox();
+        boxBiografia = new javax.swing.JCheckBox();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -74,9 +105,7 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
 
         boxComedia.setText("Comedia");
 
-        jLabel1.setText("Director");
-
-        jLabel2.setText("Actor Principal");
+        jLabel2.setText("Actor");
 
         jLabel4.setText("País");
 
@@ -93,78 +122,212 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jList);
 
+        jLabel7.setText("Para alimentar el motor de recomendación y que sus recomendaciones sean más acertadas, usted deberá ingresar los campos que usted quiera");
+
+        jLabel8.setText("Si quiere ingresar más de un elemento en un campo puede hacerlo seguido de una coma");
+
+        jLabel9.setText("Director");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Color", "Black and White" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        boxAventura.setText("Aventura");
+
+        boxFantasia.setText("Fantasía");
+
+        boxDocumental.setText("Documental");
+
+        boxFiccion.setText("Ciencia Ficción");
+
+        boxRomance.setText("Romance");
+
+        boxSuspenso.setText("Suspenso");
+
+        boxAnimacion.setText("Animación");
+
+        boxFamilia.setText("Familia");
+
+        boxMusical.setText("Musical");
+
+        boxMisterio.setText("Misterio");
+
+        boxWestern.setText("Western");
+
+        boxHistoria.setText("Historia");
+
+        boxDeporte.setText("Deporte");
+
+        boxCrimen.setText("Crimen");
+
+        boxHorror.setText("Horror");
+
+        boxGuerra.setText("Guerra");
+
+        boxBiografia.setText("Biografía");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English", "Spanish", "Japanese", "French", "Mandarin", "Aboriginal", "English", "Hindi", "Russian", "Maya", "Telugu", "Cantonese", "Icelandic", "German", "Aramaic", "Italian", "Dutch", "Hebrew", "Chinese", "Swedish", "Korean", "Thai", "Polish", "Bosnian", "Hungarian", "Portuguese", "Norwegian", "Czech", "Kannada", "Zulu", "Danish", "Arabic", "Dzongkha", "Tamil", "Vietnamese", "Indonesian", "Urdu", "Romanian", "Slovenian", "Dari", "Persian", "None" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Nueva Recomendación");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxDrama)
+                    .addComponent(boxDocumental)
+                    .addComponent(boxAccion)
+                    .addComponent(boxAventura))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxSuspenso)
+                    .addComponent(boxRomance)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(boxFantasia)
+                            .addComponent(boxFiccion))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(boxAnimacion)
+                                        .addComponent(boxFamilia)
+                                        .addComponent(boxMusical)
+                                        .addComponent(boxMisterio)))
+                                .addGap(57, 57, 57)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(boxWestern)
+                                    .addComponent(boxHistoria)
+                                    .addComponent(boxDeporte)
+                                    .addComponent(boxCrimen))
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(boxComedia)
+                                    .addComponent(boxBiografia)
+                                    .addComponent(boxGuerra)
+                                    .addComponent(boxHorror)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(btnRecomendar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(90, 90, 90)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textFieldAñoLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel6)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(98, 98, 98)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtFieldDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addComponent(jLabel4))
-                            .addGap(33, 33, 33)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFieldDirector)
-                                .addComponent(textFieldActor)
-                                .addComponent(textFieldPais)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(166, 166, 166)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(boxAccion)
-                                .addComponent(boxComedia)
-                                .addComponent(boxDrama))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(textFieldActor, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(textFieldPais, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textFieldAñoLanzamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
+                        .addGap(102, 102, 102)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(btnRecomendar)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(261, 261, 261)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtFieldDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFieldDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(textFieldActor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldActor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(26, 26, 26)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(textFieldAñoLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel6)
-                .addGap(9, 9, 9)
-                .addComponent(boxAccion)
-                .addGap(16, 16, 16)
-                .addComponent(boxDrama)
                 .addGap(18, 18, 18)
-                .addComponent(boxComedia)
-                .addGap(68, 68, 68)
-                .addComponent(btnRecomendar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxAccion)
+                    .addComponent(boxFantasia)
+                    .addComponent(boxAnimacion)
+                    .addComponent(boxWestern)
+                    .addComponent(boxHorror))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxFiccion)
+                    .addComponent(boxAventura)
+                    .addComponent(boxFamilia)
+                    .addComponent(boxHistoria)
+                    .addComponent(boxGuerra))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxDocumental)
+                    .addComponent(boxSuspenso)
+                    .addComponent(boxMusical)
+                    .addComponent(boxDeporte)
+                    .addComponent(boxBiografia))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxRomance)
+                    .addComponent(boxDrama)
+                    .addComponent(boxMisterio)
+                    .addComponent(boxCrimen)
+                    .addComponent(boxComedia))
+                .addGap(27, 27, 27)
+                .addComponent(btnRecomendar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -172,25 +335,156 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
 
     private void btnRecomendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecomendarActionPerformed
         // TODO add your handling code here:
+        if (flagRecomendar) {
+            JOptionPane.showMessageDialog( null, "Para realizar una nueva recomendación ingrese la opción 'Nueva Recomendación'", "ADVERTENCIA",JOptionPane.INFORMATION_MESSAGE);
+        } else {
+        flagRecomendar = true;
         
         String director = txtFieldDirector.getText();
         String actor = textFieldActor.getText();
         String genero = "";
         String pais = textFieldPais.getText();
-        String añoString = textFieldAñoLanzamiento.getText();
+        String año = textFieldAñoLanzamiento.getText();
+        //String idioma = textFieldIdioma.getText();
+        String color = "";
+        String idioma = "";
+        /*
         Integer año = 0;
         if (!añoString.isEmpty()) {
              año = Integer.parseInt(textFieldAñoLanzamiento.getText());
         }
+        */
+        
+        color = jComboBox1.getSelectedItem().toString();
+        idioma = jComboBox2.getSelectedItem().toString();
         
         if (boxAccion.isSelected()) {
             genero = "Action";
+        }
+        if (boxAventura.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Adventure";
+            } else {
+                genero = "Adventure";
+            }   
+        }
+        if (boxDocumental.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Documentary";
+            } else {
+                genero = "Documentary";
+            }   
         }
         if (boxDrama.isSelected()) {
             if (!genero.isEmpty()) {
                 genero += ",Drama";
             } else {
                 genero = "Drama";
+            }   
+        }
+        if (boxFantasia.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Fantasy";
+            } else {
+                genero = "Fantasy";
+            }   
+        }
+        if (boxFiccion.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Sci-Fi";
+            } else {
+                genero = "Sci-Fi";
+            }   
+        }
+        if (boxSuspenso.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Thriller";
+            } else {
+                genero = "Thriller";
+            }   
+        }
+        if (boxRomance.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Romance";
+            } else {
+                genero = "Romance";
+            }   
+        }
+        if (boxAnimacion.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Animation";
+            } else {
+                genero = "Animation";
+            }   
+        }
+        if (boxFamilia.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Family";
+            } else {
+                genero = "Family";
+            }   
+        }
+        if (boxMusical.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Musical";
+            } else {
+                genero = "Musical";
+            }   
+        }
+        if (boxMisterio.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Mystery";
+            } else {
+                genero = "Mystery";
+            }   
+        }
+        if (boxWestern.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Western";
+            } else {
+                genero = "Western";
+            }   
+        }
+        if (boxHistoria.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",History";
+            } else {
+                genero = "History";
+            }   
+        }
+        if (boxDeporte.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Sport";
+            } else {
+                genero = "Sport";
+            }   
+        }
+        if (boxCrimen.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Crime";
+            } else {
+                genero = "Crime";
+            }   
+        }
+        if (boxHorror.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Horror";
+            } else {
+                genero = "Horror";
+            }   
+        }
+        if (boxGuerra.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",War";
+            } else {
+                genero = "War";
+            }   
+        }
+        if (boxBiografia.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Biography";
+            } else {
+                genero = "Biography";
             }   
         }
         if (boxComedia.isSelected()) {
@@ -204,14 +498,21 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         DataSetMovies data = new DataSetMovies();
         data.LeerArchivo(ruta);
    
-        Similitud(data.director_name,data.actor_1_name,data.genres_by_movie,data.country,data.title_year,director,actor,genero,pais,año);
+        Similitud(data.director_name,data.actor_1_name,data.genres_by_movie,data.country,data.title_year,data.color,data.language,director,actor,genero,pais,año,idioma,color);
         
+        int size;
+        if (listaRecomendacion.size()>=10) {
+            size = 10;
+        } else {
+            size = listaRecomendacion.size();
+        }
         ArrayList<Integer>listaRandom = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        
+        for (int i = 0; i < size; i++) {
         Random rand = new Random();
         while(true) 
         {
-        int randomElement = recomendacion.get(rand.nextInt(recomendacion.size()));
+        int randomElement = listaRecomendacion.get(rand.nextInt(listaRecomendacion.size()));
         if(!listaRandom.contains(randomElement))
         {
         listaRandom.add(randomElement);
@@ -225,12 +526,72 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
             model.addElement(add);
         }
         jList.setModel(model);
+        
+            if (!director.isEmpty()) {
+                lista.add("(DIRECTOR) "+director);
+            }
+            if (!actor.isEmpty()) {
+                lista.add("(ACTOR) "+actor);
+            }
+            if (!genero.isEmpty()) {
+                lista.add("(GENERO) "+genero);
+            }
+            if (!pais.isEmpty()) {
+                lista.add("(PAIS) "+pais);
+            }
+            if (!año.isEmpty()) {
+                lista.add("(AÑO) "+año);
+            }
+            if (!color.isEmpty()) {
+                lista.add("(COLOR) "+color);
+            }
+            if (!idioma.isEmpty()) {
+                lista.add("(IDIOMA) "+idioma);
+            }
+            try {
+                CrearArchivo(lista);
+            } catch (IOException ex) {
+                Logger.getLogger(RecomendacionUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+    }
     }//GEN-LAST:event_btnRecomendarActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         JFrame menu = new JFrame();
+            menu.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void CrearArchivo (ArrayList<String> lista) throws IOException {
+ 
+        String ruta = "src/ProyectoIA/Datos.txt";
+        File file = new File(ruta);
+        String rutaCompleta = file.getAbsolutePath();
+
+        File archivo = new File(rutaCompleta);
+        BufferedWriter bw;
+        
+            bw = new BufferedWriter(new FileWriter(archivo));
+            for (int i = 0; i < lista.size(); i++) {
+              bw.write(lista.get(i)+"\n");  
+            }
+        
+        bw.close();
+    }
     
-    public static double redondearDecimales(double valorInicial, int numeroDecimales) {
+    public static double Round(double valor, int numeroDecimales) {
         double parteEntera, resultado;
-        resultado = valorInicial;
+        resultado = valor;
         parteEntera = Math.floor(resultado);
         resultado=(resultado-parteEntera)*Math.pow(10, numeroDecimales);
         resultado=Math.round(resultado);
@@ -238,54 +599,118 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         return resultado;
     }
     
-    public void Similitud (ArrayList<String> ListaDirector, ArrayList<String> ListaActor, ArrayList<ArrayList<String>>ListaGenero, ArrayList<String> ListaPais, ArrayList<Integer> ListaAño,
-            String Director, String Actor, String Genero, String Pais, Integer Año) {
+    public void Similitud (ArrayList<String> ListaDirector, ArrayList<String> ListaActor, ArrayList<ArrayList<String>>ListaGenero, ArrayList<String> ListaPais, ArrayList<Integer> ListaAño, 
+            ArrayList<String> ListaColor, ArrayList<String> ListaIdioma,String Director, String Actor, String Genero, String Pais, String Año, String Idioma, String Color) {
         
-        double pesoDirector = 0.20;
-        double pesoActorPrincipal = 0.15;
-        double pesoGenero = 0.25;
-        double pesoPais = 0.05;
-        double pesoAñoLanzamiento = 0.30;
+        DataSetMovies data = new DataSetMovies();
+        data.LeerArchivo(ruta);
         
+        double pesoDirector = 0.25;
+        double pesoActor = 0.10;
+        double pesoGenero = 0.35;
+        double pesoPais = 0.10;
+        double pesoAñoLanzamiento = 0.15;
+        double pesoIdioma = 0.05;
+        double pesoColor;
+         
         String[] generosUsuario = Genero.split(",");
+        String[] directorUsuario = Director.split(",");
+        String[] actorUsuario = Actor.split(",");
+        String[] paisUsuario = Pais.split(",");
+        String[] añoUsuario = Año.split(",");
         
+       
         for (int i = 0; i < ListaDirector.size(); i++) {
-            double similitud = 1;
+            double similitud = 0.0;
             
-            if (ListaDirector.get(i).toUpperCase().equals(Director.toUpperCase())) {
-                similitud = similitud * pesoDirector;
+            if (Director.isEmpty()&&Actor.isEmpty()&&Genero.isEmpty()&&Pais.isEmpty()&&Año.isEmpty()&&Idioma.isEmpty()) {
+                if (Color.equals("Color")) {
+                    if (ListaColor.get(i).equals(Color)) {
+                        pesoColor = 0.0;
+                        similitud = similitud + pesoColor;
+                    }
             }
-            if (ListaActor.get(i).toUpperCase().equals(Actor.toUpperCase())) {
-                similitud = similitud * pesoActorPrincipal;
             }
+            
+            if (Color.equals("Black and White")) {
+                if (ListaColor.get(i).equals(Color)) {
+                    pesoColor = 1;
+                    similitud = similitud + pesoColor;
+                }
+            }
+            
+            if (ListaIdioma.get(i).equals(Idioma)) {
+                similitud = similitud + pesoIdioma;
+            }
+            
+            
+            for (String director : directorUsuario){
+            if(ListaDirector.get(i).toUpperCase().equals(director)){
+                similitud = similitud + pesoDirector;
+            }
+            }
+            
+            /*
+            for (String idioma : idiomaUsuario){
+            if(ListaDirector.get(i).toUpperCase().equals(idioma)){
+                similitud = similitud + pesoIdioma;
+            }
+            }
+            */
+            
+            for (String año : añoUsuario){
+                if (año.equals("")) {
+                    año="0";
+                }
+            if(ListaAño.get(i) == Integer.parseInt(año)){
+                similitud = similitud + pesoAñoLanzamiento;
+            }
+            }
+            
+            for (String actor : actorUsuario){
+            if(ListaActor.get(i).toUpperCase().equals(actor)){
+                similitud = similitud + pesoActor;
+            }
+            else if(data.actor_2_name.get(i).toUpperCase().equals(actor)){
+                similitud = similitud + pesoActor;
+            }
+            else if(data.actor_3_name.get(i).toUpperCase().equals(actor)){
+                similitud = similitud + pesoActor;
+            }
+            }
+            
+            for (String pais : paisUsuario){
+            if(ListaPais.get(i).toUpperCase().equals(pais)){
+                similitud = similitud + pesoPais;
+            }
+            }
+             
             ArrayList<String> generosMovie = new ArrayList<>();
             generosMovie = ListaGenero.get(i);
             for (String genero : generosUsuario){
             if(generosMovie.contains(genero)){
-                similitud = similitud * pesoGenero;
+                similitud = similitud + pesoGenero;
             }
             }
-            if (ListaPais.get(i).toUpperCase().equals(Pais.toUpperCase())) {
-                similitud = similitud * pesoPais;
-            }
-            if (Objects.equals(ListaAño.get(i), Año)) {
-                similitud = similitud * pesoAñoLanzamiento;
-            }
-            similitud = redondearDecimales(similitud,4);
+
+            similitud = Round(similitud,4);
             listaSimilitud.add(similitud);
+
         }
-        Validar();
+        GetListaRecomendacion();
     }
     
-    public void Validar () {
-        double rango1=0, rango2=0;
-        rango1 = NumeroMinimo(listaSimilitud,0);
-        rango2 = NumeroMinimo(listaSimilitud,1);
+    public void GetListaRecomendacion() {
         
-        int contador = 1;
+        double rango1=0.0;
+        double rango2=0.0;
+        rango1 = getMax(listaSimilitud,1);
+        rango2 = getMax(listaSimilitud,2);
+        
+        int contador = 2;
         if (rango2 == rango1) {
             while (true) {
-            rango2 = NumeroMinimo(listaSimilitud,contador);
+            rango2 = getMax(listaSimilitud,contador);
                 if (rango2 != rango1) {
                     break;
                 } 
@@ -295,19 +720,24 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         contador = 0;
         for(double n: listaSimilitud)
         {
-            if(n == rango1 || n == rango2)                
+            if(Objects.equals(n, rango1)|| Objects.equals(n, rango2))                
             {
-                recomendacion.add(contador);                        
+                listaRecomendacion.add(contador);                        
             }
             contador++;
         }
     }
-            
-    public Double NumeroMinimo (ArrayList lista, int n){
-        List<Double> sortedlist = new ArrayList<>(lista); 
-        Collections.sort(sortedlist); 
-        return sortedlist.get(n);
+    
+    ///////////////////EN ESPERA//////////////////////////
+    public Double getProbabilidad () {
+        return null;
     }
+            
+    public Double getMax (ArrayList lista, int n){
+        ArrayList<Double> sortedlist = new ArrayList<>(lista); 
+        Collections.sort(sortedlist); 
+        return sortedlist.get(sortedlist.size()-n);
+   }
     
     /**
      * @param args the command line arguments
@@ -346,15 +776,37 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAccion;
+    private javax.swing.JCheckBox boxAnimacion;
+    private javax.swing.JCheckBox boxAventura;
+    private javax.swing.JCheckBox boxBiografia;
     private javax.swing.JCheckBox boxComedia;
+    private javax.swing.JCheckBox boxCrimen;
+    private javax.swing.JCheckBox boxDeporte;
+    private javax.swing.JCheckBox boxDocumental;
     private javax.swing.JCheckBox boxDrama;
+    private javax.swing.JCheckBox boxFamilia;
+    private javax.swing.JCheckBox boxFantasia;
+    private javax.swing.JCheckBox boxFiccion;
+    private javax.swing.JCheckBox boxGuerra;
+    private javax.swing.JCheckBox boxHistoria;
+    private javax.swing.JCheckBox boxHorror;
+    private javax.swing.JCheckBox boxMisterio;
+    private javax.swing.JCheckBox boxMusical;
+    private javax.swing.JCheckBox boxRomance;
+    private javax.swing.JCheckBox boxSuspenso;
+    private javax.swing.JCheckBox boxWestern;
     private javax.swing.JButton btnRecomendar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField textFieldActor;

@@ -5,13 +5,9 @@
  */
 package proyectoia;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import static java.util.Collections.list;
 import java.util.List;
-import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -22,15 +18,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class JFrame extends javax.swing.JFrame {
 
+     public boolean bandera = false;
+     
     /**
      * Creates new form JFrame
      */
     public JFrame() {
         initComponents();
     }
-
         public String ruta;
-        boolean flagArchivo = false;
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +41,7 @@ public class JFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnArranqueFrio = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,38 +68,47 @@ public class JFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Ingrese uno de las opciones disponibles de este motor de recomendación");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnArranqueFrio, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(218, 218, 218))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnArranqueFrio, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton2))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(208, 208, 208)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(54, 54, 54)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnArranqueFrio, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,13 +127,16 @@ public class JFrame extends javax.swing.JFrame {
         fileChooser.showOpenDialog(null);
         ruta = fileChooser.getSelectedFile().getAbsolutePath();
         movies.LeerArchivo(ruta);
-        flagArchivo = true;
+        bandera = true;
     }//GEN-LAST:event_btnArchivoActionPerformed
 
     private void btnArranqueFrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArranqueFrioActionPerformed
         // TODO add your handling code here:
-        if (flagArchivo) {
-            
+        ArranqueFrio frameFrio  = new ArranqueFrio(ruta);
+        
+        if (bandera) {
+             frameFrio.setVisible(true);
+            this.setVisible(false);
         } else {    
             JOptionPane.showMessageDialog( null, "Para esta opción debe ingresar primero el Data Set", "ADVERTENCIA",JOptionPane.INFORMATION_MESSAGE);
 
@@ -138,7 +147,7 @@ public class JFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         RecomendacionUsuario frameUsuario  = new RecomendacionUsuario(ruta);
         
-        if (flagArchivo) {
+        if (bandera) {
             frameUsuario.setVisible(true);
             this.setVisible(false);
         } else {    
@@ -218,5 +227,6 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnArranqueFrio;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
