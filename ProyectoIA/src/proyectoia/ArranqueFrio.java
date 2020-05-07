@@ -21,6 +21,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import static proyectoia.RecomendacionUsuario.Round;
 
 /**
  *
@@ -225,17 +226,26 @@ public class ArranqueFrio extends javax.swing.JFrame {
         return resultado;
     }
     
-    public void Similitud (String Director, String Actor, String Genero, String Pais, String Año, String Idioma, String Color) {
+     public void Similitud (String Director, String Actor, String Genero, String Pais, String Año, String Idioma, String Color) {
         
         DataSetMovies data = new DataSetMovies();
         data.LeerArchivo(ruta);
+        String tempo = "";
         
-        double pesoDirector = 0.25;
-        double pesoActor = 0.10;
-        double pesoGenero = 0.35;
-        double pesoPais = 0.10;
-        double pesoAñoLanzamiento = 0.15;
-        double pesoIdioma = 0.05;
+        Director = Director.replace(" ", "");
+        Actor = Actor.replace(" ", "");
+        Genero = Genero.replace(" ", "");
+        Pais = Pais.replace(" ", "");
+        Año = Año.replace(" ", "");
+        Idioma = Idioma.replace(" ", "");
+        Color = Color.replace(" ", "");
+        
+        double pesoDirector = 0.35;
+        double pesoActor = 0.15;
+        double pesoGenero = 0.40;
+        double pesoPais = 0.20;
+        double pesoAñoLanzamiento = 0.30;
+        double pesoIdioma = 0.25;
         double pesoColor;
          
         String[] generosUsuario = Genero.split(",");
@@ -250,15 +260,17 @@ public class ArranqueFrio extends javax.swing.JFrame {
             
             if (Director.isEmpty()&&Actor.isEmpty()&&Genero.isEmpty()&&Pais.isEmpty()&&Año.isEmpty()) {
                 if (Color.equals("Color")) {
-                    if (data.color.get(i).equals(Color)) {
+                    tempo = data.color.get(i).replace(" ", "");
+                    if (tempo.equals(Color)) {
                         pesoColor = 0.0;
                         similitud = similitud + pesoColor;
                     }
             }
             }
             
-            if (Color.equals("Black and White")) {
-                if (data.color.get(i).equals(Color)) {
+            if (Color.equals("BlackandWhite")) {
+                tempo = data.color.get(i).replace(" ", "");
+                if (tempo.equals(Color)) {
                     pesoColor = 1;
                     similitud = similitud + pesoColor;
                 }
@@ -270,19 +282,12 @@ public class ArranqueFrio extends javax.swing.JFrame {
             
             
             for (String director : directorUsuario){
-            if(data.director_name.get(i).toUpperCase().equals(director.toUpperCase())){
+               tempo = data.director_name.get(i).replace(" ", "");
+            if(tempo.toUpperCase().equals(director.toUpperCase())){
                 similitud = similitud + pesoDirector;
             }
             }
-            
-            /*
-            for (String idioma : idiomaUsuario){
-            if(ListaDirector.get(i).toUpperCase().equals(idioma)){
-                similitud = similitud + pesoIdioma;
-            }
-            }
-            */
-            
+                      
             for (String año : añoUsuario){
                 if (año.equals("")) {
                     año="0";
@@ -293,13 +298,16 @@ public class ArranqueFrio extends javax.swing.JFrame {
             }
             
             for (String actor : actorUsuario){
-            if(data.actor_1_name.get(i).toUpperCase().equals(actor.toUpperCase())){
+                tempo = data.actor_1_name.get(i).replace(" ", "");
+            if(tempo.toUpperCase().equals(actor.toUpperCase())){
                 similitud = similitud + pesoActor;
             }
-            else if(data.actor_2_name.get(i).toUpperCase().equals(actor.toUpperCase())){
+            tempo = data.actor_2_name.get(i).replace(" ", "");
+            if(tempo.equals(actor.toUpperCase())){
                 similitud = similitud + pesoActor;
             }
-            else if(data.actor_3_name.get(i).toUpperCase().equals(actor.toUpperCase())){
+            tempo = data.actor_3_name.get(i).replace(" ", "");    
+            if(tempo.toUpperCase().equals(actor.toUpperCase())){
                 similitud = similitud + pesoActor;
             }
             }
@@ -323,6 +331,7 @@ public class ArranqueFrio extends javax.swing.JFrame {
 
         }
         GetListaRecomendacion();
+    
         
         int size;
         if (listaRecomendacion.size()>=10) {
