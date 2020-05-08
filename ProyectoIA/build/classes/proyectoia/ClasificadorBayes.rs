@@ -1,2 +1,0 @@
-proyectoia.Palabras
-proyectoia.ClasificadorBayes

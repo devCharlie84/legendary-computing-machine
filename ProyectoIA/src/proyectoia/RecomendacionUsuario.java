@@ -1,12 +1,16 @@
 package proyectoia;
 
 
+import com.sun.glass.events.KeyEvent;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Level;
@@ -87,6 +91,12 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         boxComedia = new javax.swing.JCheckBox();
         boxGuerra = new javax.swing.JCheckBox();
         boxBiografia = new javax.swing.JCheckBox();
+        boxFilmNoir = new javax.swing.JCheckBox();
+        boxGameShow = new javax.swing.JCheckBox();
+        boxRealityTV = new javax.swing.JCheckBox();
+        boxNews = new javax.swing.JCheckBox();
+        boxShort = new javax.swing.JCheckBox();
+        boxMusica = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -167,82 +177,115 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
 
         boxBiografia.setText("Biografía");
 
+        boxFilmNoir.setText("Film-Noir");
+
+        boxGameShow.setText("Game-Show");
+
+        boxRealityTV.setText("Reality-TV");
+
+        boxNews.setText("News");
+
+        boxShort.setText("Short");
+
+        boxMusica.setText("Música");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxDrama)
+                    .addComponent(boxAventura)
                     .addComponent(boxDocumental)
-                    .addComponent(boxAccion)
-                    .addComponent(boxAventura))
+                    .addComponent(boxDrama)
+                    .addComponent(boxAccion))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxSuspenso)
-                    .addComponent(boxRomance)
+                    .addComponent(boxFantasia)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boxFantasia)
-                            .addComponent(boxFiccion))
-                        .addGap(48, 48, 48)
+                            .addComponent(boxFiccion)
+                            .addComponent(boxSuspenso)
+                            .addComponent(boxRomance))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boxAnimacion)
-                            .addComponent(boxFamilia)
-                            .addComponent(boxMusical)
                             .addComponent(boxMisterio)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel6)))
-                        .addGap(57, 57, 57)
+                            .addComponent(boxMusical)
+                            .addComponent(boxFamilia)
+                            .addComponent(boxAnimacion))))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(boxWestern)
+                        .addGap(47, 47, 47)
+                        .addComponent(boxHorror))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boxWestern)
                             .addComponent(boxHistoria)
                             .addComponent(boxDeporte)
                             .addComponent(boxCrimen))
-                        .addGap(44, 44, 44)
+                        .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boxComedia)
                             .addComponent(boxBiografia)
                             .addComponent(boxGuerra)
-                            .addComponent(boxHorror))))
+                            .addComponent(boxComedia))))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxFilmNoir)
+                    .addComponent(boxGameShow)
+                    .addComponent(boxRealityTV)
+                    .addComponent(boxNews))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxShort)
+                    .addComponent(boxMusica))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(329, 329, 329)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxAccion)
                     .addComponent(boxFantasia)
                     .addComponent(boxAnimacion)
                     .addComponent(boxWestern)
-                    .addComponent(boxHorror))
+                    .addComponent(boxHorror)
+                    .addComponent(boxFilmNoir)
+                    .addComponent(boxShort))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxFiccion)
                     .addComponent(boxAventura)
                     .addComponent(boxFamilia)
                     .addComponent(boxHistoria)
-                    .addComponent(boxGuerra))
+                    .addComponent(boxGuerra)
+                    .addComponent(boxGameShow)
+                    .addComponent(boxMusica))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxDocumental)
                     .addComponent(boxSuspenso)
                     .addComponent(boxMusical)
                     .addComponent(boxDeporte)
-                    .addComponent(boxBiografia))
+                    .addComponent(boxBiografia)
+                    .addComponent(boxRealityTV))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxRomance)
                     .addComponent(boxDrama)
-                    .addComponent(boxMisterio)
                     .addComponent(boxCrimen)
-                    .addComponent(boxComedia))
-                .addContainerGap())
+                    .addComponent(boxComedia)
+                    .addComponent(boxMisterio)
+                    .addComponent(boxNews))
+                .addGap(38, 38, 38))
         );
 
         jLabel9.setText("Director");
@@ -259,6 +302,12 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         jLabel4.setText("País");
 
         jLabel5.setText("Año de Lanzamiento");
+
+        textFieldAñoLanzamiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFieldAñoLanzamientoKeyTyped(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English", "Spanish", "Japanese", "French", "Mandarin", "Aboriginal", "English", "Hindi", "Russian", "Maya", "Telugu", "Cantonese", "Icelandic", "German", "Aramaic", "Italian", "Dutch", "Hebrew", "Chinese", "Swedish", "Korean", "Thai", "Polish", "Bosnian", "Hungarian", "Portuguese", "Norwegian", "Czech", "Kannada", "Zulu", "Danish", "Arabic", "Dzongkha", "Tamil", "Vietnamese", "Indonesian", "Urdu", "Romanian", "Slovenian", "Dari", "Persian", "None" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -330,12 +379,21 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jLabel1.setText("Motor de recomendación basado en CONTENT-BASED FILTERING");
+        jLabel1.setText("Motor de recomendación basado en CONTENT-BASED FILTERING (Item-Based Analysis)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(329, 329, 329)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -347,23 +405,15 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
                                 .addGap(269, 269, 269)
                                 .addComponent(jLabel1))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(361, 361, 361)
-                        .addComponent(btnRecomendar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(329, 329, 329)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(371, 371, 371)
+                        .addComponent(btnRecomendar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,17 +424,17 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRecomendar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -396,8 +446,7 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         if (flagRecomendar) {
             JOptionPane.showMessageDialog( null, "Para realizar una nueva recomendación ingrese la opción 'Nueva Recomendación'", "ADVERTENCIA",JOptionPane.INFORMATION_MESSAGE);
         } else {
-        flagRecomendar = true;
-        
+
         String director = txtFieldDirector.getText();
         String actor = textFieldActor.getText();
         String genero = "";
@@ -545,6 +594,48 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
                 genero = "Biography";
             }   
         }
+        if (boxFilmNoir.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Fiml-Noir";
+            } else {
+                genero = "Film-Noir";
+            }   
+        }
+        if (boxGameShow.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Game-Show";
+            } else {
+                genero = "Game-Show";
+            }   
+        }
+        if (boxRealityTV.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Reality-TV";
+            } else {
+                genero = "Reality-TV";
+            }   
+        }
+        if (boxNews.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",News";
+            } else {
+                genero = "News";
+            }   
+        }
+        if (boxShort.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Short";
+            } else {
+                genero = "Short";
+            }   
+        }
+        if (boxMusica.isSelected()) {
+            if (!genero.isEmpty()) {
+                genero += ",Music";
+            } else {
+                genero = "Music";
+            }   
+        }
         if (boxComedia.isSelected()) {
             if (!genero.isEmpty()) {
                 genero += ",Comedy";
@@ -632,14 +723,32 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
             this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void textFieldAñoLanzamientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAñoLanzamientoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if (!(Character.isDigit(c) || c ==KeyEvent.VK_BACKSPACE) || c==KeyEvent.VK_DELETE) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_textFieldAñoLanzamientoKeyTyped
+
     public void CrearArchivo (ArrayList<String> lista) throws IOException {
- 
         String ruta = "src/Tests/Datos.txt";
         File file = new File(ruta);
         String rutaCompleta = file.getAbsolutePath();
 
         File archivo = new File(rutaCompleta);
         BufferedWriter bw;
+        
+        if(archivo.exists()) {
+            FileReader fr = null;
+            BufferedReader br = null;
+            fr = new FileReader (archivo);
+            br = new BufferedReader(fr);
+            String linea;
+         while((linea=br.readLine())!=null)
+            lista.add(linea);
+        }
         
             bw = new BufferedWriter(new FileWriter(archivo));
             for (int i = 0; i < lista.size(); i++) {
@@ -691,70 +800,80 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         for (int i = 0; i < data.director_name.size(); i++) {
             double similitud = 0.0;
             
+            //COLOR
             if (Director.isEmpty()&&Actor.isEmpty()&&Genero.isEmpty()&&Pais.isEmpty()&&Año.isEmpty()) {
                 if (Color.equals("Color")) {
                     tempo = data.color.get(i).replace(" ", "");
                     if (tempo.equals(Color)) {
+                        //pesoColor = setPesoPorProbabilidad(data.color,Color);
                         pesoColor = 0.0;
                         similitud = similitud + pesoColor;
                     }
             }
             }
-            
             if (Color.equals("BlackandWhite")) {
                 tempo = data.color.get(i).replace(" ", "");
                 if (tempo.equals(Color)) {
-                    pesoColor = 1;
+                    //pesoColor = setPesoPorProbabilidad(data.color,Color);
+                    pesoColor = 1.0;
                     similitud = similitud + pesoColor;
                 }
             }
-            
+            //IDIOMA
             if (data.language.get(i).toUpperCase().equals(Idioma.toUpperCase())) {
+                //pesoIdioma = setPesoPorProbabilidad(data.language,Idioma);
                 similitud = similitud + pesoIdioma;
             }
-            
-            
+            //DIRECTOR
             for (String director : directorUsuario){
                tempo = data.director_name.get(i).replace(" ", "");
             if(tempo.toUpperCase().equals(director.toUpperCase())){
+                //pesoDirector = setPesoPorProbabilidad(data.director_name,director);
                 similitud = similitud + pesoDirector;
             }
             }
-                      
+            //AÑO        
             for (String año : añoUsuario){
                 if (año.equals("")) {
                     año="0";
                 }
             if(data.title_year.get(i) == Integer.parseInt(año)){
+                //pesoAñoLanzamiento = setPesoPorProbabilidadInteger(data.title_year,Integer.parseInt(año));
                 similitud = similitud + pesoAñoLanzamiento;
             }
             }
-            
+            //ACTOR
             for (String actor : actorUsuario){
                 tempo = data.actor_1_name.get(i).replace(" ", "");
             if(tempo.toUpperCase().equals(actor.toUpperCase())){
+                //pesoActor = setPesoPorProbabilidad(data.actor_1_name,actor);
                 similitud = similitud + pesoActor;
             }
             tempo = data.actor_2_name.get(i).replace(" ", "");
-            if(tempo.equals(actor.toUpperCase())){
+            if(tempo.toUpperCase().equals(actor.toUpperCase())){
+                //pesoActor = setPesoPorProbabilidad(data.actor_2_name,actor);
                 similitud = similitud + pesoActor;
             }
             tempo = data.actor_3_name.get(i).replace(" ", "");    
             if(tempo.toUpperCase().equals(actor.toUpperCase())){
+                 //pesoActor = setPesoPorProbabilidad(data.actor_3_name,actor);
                 similitud = similitud + pesoActor;
             }
             }
-            
+            //PAIS
             for (String pais : paisUsuario){
-            if(data.country.get(i).toUpperCase().equals(pais.toUpperCase())){
+            tempo = data.country.get(i).replace(" ", "");
+            if(tempo.toUpperCase().equals(pais.toUpperCase())){
+                 //pesoPais = setPesoPorProbabilidad(data.country,pais);
                 similitud = similitud + pesoPais;
             }
             }
-             
+            //GENEROS 
             ArrayList<String> generosMovie = new ArrayList<>();
             generosMovie = data.genres_by_movie.get(i);
             for (String genero : generosUsuario){
             if(generosMovie.contains(genero)){
+                 //pesoGenero = setPesoPorProbabilidad(data.genres_by_movie.get(i),genero);
                 similitud = similitud + pesoGenero;
             }
             }
@@ -794,15 +913,53 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
         }
     }
     
-    ///////////////////EN ESPERA//////////////////////////
-    public Double getProbabilidad () {
-        return null;
+    //Calculamos los pesos para el Content-Based Filtering por medio de la probabilidad del item en el data set
+    public Double setPesoPorProbabilidad (ArrayList<String> lista, String valor) {
+        double peso, numerador, denominador =0.0;
+        int numeroTotal = lista.size();
+        int numeroAciertos =0;
+        String tempo ="";
+        
+        valor = valor.replace(" ", "");
+        
+        for (int i = 0; i < lista.size(); i++) {
+            tempo = lista.get(i).replace(" ", "");
+            if (tempo.toUpperCase().equals(valor.toUpperCase())) {
+                numeroAciertos++;
+            }
+        }
+        numerador = numeroAciertos;
+        denominador = numeroTotal;
+        peso = (numerador/denominador);
+        return peso;
+    }
+    
+    public Double setPesoPorProbabilidadInteger (ArrayList<Integer> lista, Integer valor) {
+        double peso, numerador, denominador =0.0;
+        int numeroTotal = lista.size();
+        int numeroAciertos =0;       
+       
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i)==valor) {
+                numeroAciertos++;
+            }
+        }
+        numerador = numeroAciertos;
+        denominador = numeroTotal;
+        peso = (numerador/denominador);
+        return peso;
     }
             
     public Double getMax (ArrayList lista, int n){
         ArrayList<Double> sortedlist = new ArrayList<>(lista); 
         Collections.sort(sortedlist); 
         return sortedlist.get(sortedlist.size()-n);
+   }
+    
+    public Double getMin (ArrayList lista, int n){
+        List<Double> sortedlist = new ArrayList<>(lista); 
+        Collections.sort(sortedlist); 
+        return sortedlist.get(n);
    }
     
     /**
@@ -853,12 +1010,18 @@ public class RecomendacionUsuario extends javax.swing.JFrame {
     private javax.swing.JCheckBox boxFamilia;
     private javax.swing.JCheckBox boxFantasia;
     private javax.swing.JCheckBox boxFiccion;
+    private javax.swing.JCheckBox boxFilmNoir;
+    private javax.swing.JCheckBox boxGameShow;
     private javax.swing.JCheckBox boxGuerra;
     private javax.swing.JCheckBox boxHistoria;
     private javax.swing.JCheckBox boxHorror;
     private javax.swing.JCheckBox boxMisterio;
+    private javax.swing.JCheckBox boxMusica;
     private javax.swing.JCheckBox boxMusical;
+    private javax.swing.JCheckBox boxNews;
+    private javax.swing.JCheckBox boxRealityTV;
     private javax.swing.JCheckBox boxRomance;
+    private javax.swing.JCheckBox boxShort;
     private javax.swing.JCheckBox boxSuspenso;
     private javax.swing.JCheckBox boxWestern;
     private javax.swing.JButton btnRecomendar;

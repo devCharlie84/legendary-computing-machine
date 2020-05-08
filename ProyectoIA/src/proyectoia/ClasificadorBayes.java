@@ -188,7 +188,7 @@ class Palabras {
         }
         String clase = "";
         if (cateTexto == 0) {
-            clase = " Positivo";
+            clase = "Positivo";
         } else {
             clase =  "Negativo";
         }

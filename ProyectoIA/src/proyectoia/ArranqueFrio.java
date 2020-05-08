@@ -13,15 +13,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import static proyectoia.RecomendacionUsuario.Round;
 
 /**
  *
@@ -146,7 +147,7 @@ public class ArranqueFrio extends javax.swing.JFrame {
         BufferedWriter bw;
  
         if(archivo.exists()) {
-            JOptionPane.showMessageDialog( null, "Búsquedas de recomendación de usuarios detectados aplicando COLLABORATIVE FILTERING", "Aviso",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog( null, "Búsquedas de recomendación de usuarios detectados aplicando COLLABORATIVE FILTERING (Item-Based)", "Aviso",JOptionPane.INFORMATION_MESSAGE);
             try {
                 RecomendacionAlimentada(rutaCompleta);
             } catch (IOException ex) {
@@ -192,7 +193,7 @@ public class ArranqueFrio extends javax.swing.JFrame {
     
     public void RecomendacionAlimentada (String ruta) throws FileNotFoundException, IOException {
         String director ="",actor ="", genero ="",color="",idioma="",pais="",año="";
-      
+        
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -203,15 +204,14 @@ public class ArranqueFrio extends javax.swing.JFrame {
         // Lectura del fichero
         String linea;
         while((linea=br.readLine())!=null){
-        if(linea.startsWith("(DIRECTOR)")){linea = linea.replace("(DIRECTOR)",""); director = linea; director = director.substring(1);}
-        if(linea.startsWith("(ACTOR)")){linea = linea.replace("(ACTOR)",""); actor = linea; actor = actor.substring(1); }
-        if(linea.startsWith("(GENERO)")){linea = linea.replace("(GENERO)",""); genero = linea; genero = genero.substring(1);}
-        if(linea.startsWith("(COLOR)")){linea = linea.replace("(COLOR)",""); color = linea; color = color.substring(1);}
-        if(linea.startsWith("(IDIOMA)")){linea = linea.replace("(IDIOMA)",""); idioma = linea; idioma = idioma.substring(1);}
-        if(linea.startsWith("(PAIS)")){linea = linea.replace("(PAIS)",""); pais = linea; pais = pais.substring(1);}
-        if(linea.startsWith("(AÑO)")){linea = linea.replace("(AÑO)",""); año = linea; año = año.substring(1); }
+        if(linea.startsWith("(DIRECTOR)")){linea = linea.replace("(DIRECTOR)",""); director = linea +"," + director; }
+        if(linea.startsWith("(ACTOR)")){linea = linea.replace("(ACTOR)",""); actor = linea +"," + actor; }
+        if(linea.startsWith("(GENERO)")){linea = linea.replace("(GENERO)",""); genero = linea +"," + genero; }
+        if(linea.startsWith("(COLOR)")){linea = linea.replace("(COLOR)",""); color = linea +"," + color; }
+        if(linea.startsWith("(IDIOMA)")){linea = linea.replace("(IDIOMA)",""); idioma = linea +"," + idioma; }
+        if(linea.startsWith("(PAIS)")){linea = linea.replace("(PAIS)",""); pais = linea +"," + pais; }
+        if(linea.startsWith("(AÑO)")){linea = linea.replace("(AÑO)",""); año = linea +"," + año; }
         }
-
         Similitud(director,actor,genero,pais,año,idioma,color);
     }
     
@@ -227,10 +227,16 @@ public class ArranqueFrio extends javax.swing.JFrame {
     }
     
      public void Similitud (String Director, String Actor, String Genero, String Pais, String Año, String Idioma, String Color) {
-        
         DataSetMovies data = new DataSetMovies();
         data.LeerArchivo(ruta);
         String tempo = "";
+
+         if (Director.equals(",")) { Director = ""; }
+         if (Actor.equals(",")) { Actor = ""; }
+         if (Genero.equals(",")) { Genero = ""; }
+         if (Pais.equals(",")) { Pais = ""; }
+         if (Año.equals(",")) { Año = ""; }
+         if (Color.equals(",")) { Color = ""; }
         
         Director = Director.replace(" ", "");
         Actor = Actor.replace(" ", "");
@@ -239,7 +245,7 @@ public class ArranqueFrio extends javax.swing.JFrame {
         Año = Año.replace(" ", "");
         Idioma = Idioma.replace(" ", "");
         Color = Color.replace(" ", "");
-        
+            
         double pesoDirector = 0.35;
         double pesoActor = 0.15;
         double pesoGenero = 0.40;
@@ -247,63 +253,148 @@ public class ArranqueFrio extends javax.swing.JFrame {
         double pesoAñoLanzamiento = 0.30;
         double pesoIdioma = 0.25;
         double pesoColor;
-         
+        
         String[] generosUsuario = Genero.split(",");
         String[] directorUsuario = Director.split(",");
         String[] actorUsuario = Actor.split(",");
         String[] paisUsuario = Pais.split(",");
         String[] añoUsuario = Año.split(",");
+        String[] idiomaUsuario = Idioma.split(",");
+        String[] colorUsuario = Color.split(",");
         
+        List<String>listaDirector = new ArrayList<>();
+        List<String>listaGenero = new ArrayList<>();
+        List<String>listaActor = new ArrayList<>();
+        List<String>listaPais = new ArrayList<>();
+        List<String>listaAño = new ArrayList<>();
+        List<String>listaIdioma = new ArrayList<>();
+        List<String>listaColor = new ArrayList<>();
+                 
+        //DIRECTOR
+             for(String d : directorUsuario){
+                 listaDirector.add(d);
+             }
+        listaDirector = listaDirector.stream().distinct().collect(Collectors.toList());
+        for (int i = 0; i < listaDirector.size(); i++) {
+             LimpiarArray(listaDirector,directorUsuario);
+             directorUsuario[i] = listaDirector.get(i);
+         }
+        //GENERO
+             for(String g : generosUsuario){
+                 listaGenero.add(g);
+             }
+        listaGenero = listaGenero.stream().distinct().collect(Collectors.toList());
+        for (int i = 0; i < listaGenero.size(); i++) {
+             LimpiarArray(listaGenero,generosUsuario);
+             generosUsuario[i] = listaGenero.get(i);
+         }
+        //ACTOR
+             for(String a : actorUsuario){
+                 listaActor.add(a);
+             }
+        listaActor = listaActor.stream().distinct().collect(Collectors.toList());
+        for (int i = 0; i < listaActor.size(); i++) {
+             LimpiarArray(listaActor,actorUsuario);
+             actorUsuario[i] = listaActor.get(i);
+         }
+        //PAIS
+             for(String p : paisUsuario){
+                 listaPais.add(p);
+             }
+        listaPais = listaPais.stream().distinct().collect(Collectors.toList());
+        for (int i = 0; i < listaPais.size(); i++) {
+             LimpiarArray(listaPais,paisUsuario);
+             paisUsuario[i] = listaPais.get(i);
+         }
+        //AÑO
+        for (String año : añoUsuario){
+                if (año.equals("")) {
+                    año="0";
+                }
+        }
+             for(String añ : añoUsuario){
+                 listaAño.add(añ);
+             }
+        listaAño = listaAño.stream().distinct().collect(Collectors.toList());
+        for (int i = 0; i < listaAño.size(); i++) {
+            LimpiarArray(listaAño,añoUsuario);
+             añoUsuario[i] = listaAño.get(i);
+         }
+        //IDIOMA
+             for(String id : idiomaUsuario){
+                 listaIdioma.add(id);
+             }
+        listaIdioma = listaIdioma.stream().distinct().collect(Collectors.toList());  
+        for (int i = 0; i < listaIdioma.size(); i++) {
+            LimpiarArray(listaIdioma,idiomaUsuario);
+             idiomaUsuario[i] = listaIdioma.get(i);
+         }
+        //COLOR
+             for(String c : colorUsuario){
+                 listaColor.add(c);
+             }
+        listaColor = listaColor.stream().distinct().collect(Collectors.toList());  
+               for (int i = 0; i < listaColor.size(); i++) {
+                   LimpiarArray(listaColor,colorUsuario);
+             colorUsuario[i] = listaColor.get(i);
+         }
        
         for (int i = 0; i < data.director_name.size(); i++) {
             double similitud = 0.0;
             
+            //COLOR
             if (Director.isEmpty()&&Actor.isEmpty()&&Genero.isEmpty()&&Pais.isEmpty()&&Año.isEmpty()) {
-                if (Color.equals("Color")) {
+                for(String color : colorUsuario){
+                 if (color.equals("Color")) {
                     tempo = data.color.get(i).replace(" ", "");
-                    if (tempo.equals(Color)) {
+                    if (tempo.equals(color)) {
                         pesoColor = 0.0;
                         similitud = similitud + pesoColor;
                     }
+                 }
             }
             }
-            
-            if (Color.equals("BlackandWhite")) {
+            for(String color : colorUsuario){ 
+            if (color.equals("BlackandWhite")) {
                 tempo = data.color.get(i).replace(" ", "");
-                if (tempo.equals(Color)) {
+                if (tempo.equals(color)) {
                     pesoColor = 1;
                     similitud = similitud + pesoColor;
                 }
             }
-            
-            if (data.language.get(i).toUpperCase().equals(Idioma.toUpperCase())) {
-                similitud = similitud + pesoIdioma;
             }
             
-            
-            for (String director : directorUsuario){
-               tempo = data.director_name.get(i).replace(" ", "");
+            //IDIOMA
+            for(String idioma : idiomaUsuario){
+            if (data.language.get(i).toUpperCase().equals(idioma.toUpperCase())) {
+                similitud = similitud + pesoIdioma;
+            }  
+            }
+            //DIRECTOR  
+            for(String director : directorUsuario){
+            tempo = data.director_name.get(i).replace(" ", "");
             if(tempo.toUpperCase().equals(director.toUpperCase())){
                 similitud = similitud + pesoDirector;
             }
             }
-                      
+            //AÑO       
             for (String año : añoUsuario){
                 if (año.equals("")) {
                     año="0";
                 }
+        
             if(data.title_year.get(i) == Integer.parseInt(año)){
                 similitud = similitud + pesoAñoLanzamiento;
             }
             }
-            
-            for (String actor : actorUsuario){
-                tempo = data.actor_1_name.get(i).replace(" ", "");
+            //ACTORES
+            for(String actor : actorUsuario){
+            tempo = data.actor_1_name.get(i).replace(" ", "");
             if(tempo.toUpperCase().equals(actor.toUpperCase())){
                 similitud = similitud + pesoActor;
             }
             tempo = data.actor_2_name.get(i).replace(" ", "");
-            if(tempo.equals(actor.toUpperCase())){
+            if(tempo.toUpperCase().equals(actor.toUpperCase())){
                 similitud = similitud + pesoActor;
             }
             tempo = data.actor_3_name.get(i).replace(" ", "");    
@@ -311,27 +402,28 @@ public class ArranqueFrio extends javax.swing.JFrame {
                 similitud = similitud + pesoActor;
             }
             }
-            
-            for (String pais : paisUsuario){
-            if(data.country.get(i).toUpperCase().equals(pais.toUpperCase())){
+            //PAIS
+            for(String pais : paisUsuario){
+            tempo = data.country.get(i).replace(" ", "");
+            if(tempo.toUpperCase().equals(pais.toUpperCase())){
                 similitud = similitud + pesoPais;
             }
             }
-             
-            ArrayList<String> generosMovie = new ArrayList<>();
-            generosMovie = data.genres_by_movie.get(i);
-            for (String genero : generosUsuario){
-            if(generosMovie.contains(genero)){
+            //GENEROS
+            for(String genero : generosUsuario){
+            tempo = data.genres_by_movie.get(i).toString();
+            if(tempo.contains(genero)){
                 similitud = similitud + pesoGenero;
             }
             }
+            
 
             similitud = Round(similitud,4);
             listaSimilitud.add(similitud);
 
         }
         GetListaRecomendacion();
-    
+        
         
         int size;
         if (listaRecomendacion.size()>=10) {
@@ -364,6 +456,15 @@ public class ArranqueFrio extends javax.swing.JFrame {
         
     }
     
+     public void LimpiarArray (List<String>lista, String[]string){
+         int sizelista = lista.size();
+         int sizestring = string.length;
+         
+         for (int i = sizelista; i <sizestring ; i++) {
+             string[i] = "";
+         }
+     }
+     
     public void GetListaRecomendacion() {
         
         double rango1=0.0;

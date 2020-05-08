@@ -33,6 +33,19 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="329" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="184" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
@@ -44,31 +57,19 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="361" max="-2" attributes="0"/>
-                      <Component id="btnRecomendar" min="-2" pref="110" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="645" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="329" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="184" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="371" max="-2" attributes="0"/>
+                      <Component id="btnRecomendar" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,17 +82,17 @@
               <Component id="jLabel7" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnRecomendar" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="220" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="52" max="-2" attributes="0"/>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,65 +149,87 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="boxDrama" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxAventura" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="boxDocumental" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="boxAccion" min="-2" max="-2" attributes="0"/>
-                      <Component id="boxAventura" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxDrama" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxAccion" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="boxSuspenso" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="boxRomance" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxFantasia" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="boxFantasia" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="boxFiccion" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxSuspenso" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxRomance" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="boxMisterio" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxMusical" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxFamilia" min="-2" max="-2" attributes="0"/>
                               <Component id="boxAnimacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxFamilia" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxMusical" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxMisterio" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="boxWestern" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxHistoria" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxDeporte" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxCrimen" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="boxComedia" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxBiografia" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxGuerra" min="-2" max="-2" attributes="0"/>
-                              <Component id="boxHorror" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="boxWestern" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="boxHorror" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="boxHistoria" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxDeporte" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxCrimen" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="boxBiografia" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxGuerra" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxComedia" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="boxFilmNoir" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxGameShow" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxRealityTV" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxNews" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="boxShort" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxMusica" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="329" max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="boxAccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxFantasia" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxAnimacion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxWestern" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxHorror" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxFilmNoir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxShort" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -215,6 +238,8 @@
                       <Component id="boxFamilia" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxHistoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxGuerra" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxGameShow" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxMusica" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -223,16 +248,18 @@
                       <Component id="boxMusical" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxDeporte" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxBiografia" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxRealityTV" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="boxRomance" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxDrama" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="boxMisterio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxCrimen" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boxComedia" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxMisterio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxNews" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -341,6 +368,36 @@
         <Component class="javax.swing.JCheckBox" name="boxBiografia">
           <Properties>
             <Property name="text" type="java.lang.String" value="Biograf&#xed;a"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="boxFilmNoir">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Film-Noir"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="boxGameShow">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Game-Show"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="boxRealityTV">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Reality-TV"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="boxNews">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="News"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="boxShort">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Short"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="boxMusica">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="M&#xfa;sica"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -469,6 +526,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldA&#xf1;oLanzamiento">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldA&#xf1;oLanzamientoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox2">
           <Properties>
@@ -535,7 +595,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Motor de recomendaci&#xf3;n basado en CONTENT-BASED FILTERING"/>
+        <Property name="text" type="java.lang.String" value="Motor de recomendaci&#xf3;n basado en CONTENT-BASED FILTERING (Item-Based Analysis)"/>
       </Properties>
     </Component>
   </SubComponents>

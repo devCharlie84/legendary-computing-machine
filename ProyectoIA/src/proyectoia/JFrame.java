@@ -303,7 +303,7 @@ public class JFrame extends javax.swing.JFrame {
     
    //Normalización
    /*
-      X = (X - min) / (max - min)
+      Xnormalizado = (X - min) / (max - min)
    */
    public ArrayList<Integer> Normalizar (ArrayList<Integer> lista) {
       ArrayList<Integer> ListaNormalizada = new ArrayList();
